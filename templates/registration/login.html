@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col m6 offset-m3 login">
+            <div class="card">
+                <div class="card-action blue white-text">
+                    <h3>Login</h3>
+                    <div class="right">
+                        <a href="{% url 'register' %}" class="btn-floating waves-effect waves-light"><i class="small material-icons">person_add</i></a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    {% if form.non_field_errors %}
+                      <div class="alert alert-error" role="alert">
+                        {% for error in form.non_field_errors %}
+                          <p>{{ error }}</p>
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="input-field">
+                                {{ form.username | as_crispy_field }}
+                            </div>
+                            <div class="input-field">
+                                {{ form.password | as_crispy_field }}
+                            </div>
+                            <label class="form-control">
+                                <input type="checkbox" id="remember">
+                                <span>Remember me</span>
+                            </label>
+                            <label style="float: right;">
+                                <a class="blue-text" href='#!'><b>Forgot password ?</b></a>
+                            </label>
+                            <br>
+                            <div class="form-control center-align">
+                              <button type="submit" class="waves-effect waves-light btn-large blue"><i class="material-icons left">input</i>Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

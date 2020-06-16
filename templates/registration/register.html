@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="row">
+        <div class="col m6 offset-m3 login">
+            <div class="card">
+                <div class="card-action blue white-text">
+                    <h3>Register</h3>
+                    <div class="right">
+                        <a href="{% url 'login' %}" class="btn-floating waves-effect waves-light"><i class="small material-icons">person</i></a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <form method="post">
+                        {% csrf_token %}
+                        <br>
+                        <div class="col m6">
+                            {{ form.first_name | as_crispy_field }}
+                        </div>
+                        <div class="col m6">
+                            {{ form.last_name | as_crispy_field }}
+                        </div>
+                        <div class="col m12">
+                            {{ form.email | as_crispy_field }}
+                        </div>
+                        <div class="col m12">
+                            {{ form.username | as_crispy_field }}
+                        </div>
+                        <div class="col m6">
+                            {{ form.password1 | as_crispy_field }}
+                        </div>
+                        <div class="col m6">
+                            {{ form.password2 | as_crispy_field }}
+                        </div>
+                        <div class="form-control center-align">
+                            <button type="submit" class="waves-effect waves-light btn-large blue">Register</button>
+                        </div>
+                        <hr>
+                        <div class="center-align">
+                            <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

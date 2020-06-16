@@ -1,0 +1,28 @@
+.header{
+  position: relative;
+  padding: 25px 0;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #f9f9f9;
+  background-position: 50%;
+  background-size: cover;
+  transition-duration: .3s;
+}
+
+.anime-header{
+  @include prefix((display:flex), 'webkit ms');
+  @include prefix((align-items:center), 'webkit ms');
+  .anime-header_image{
+    padding: 20px 40px 20px 0;
+    flex: none;
+    width: 250px;
+    margin: -25px 0 -25px 30px;
+    img{
+      height: 250px;
+      border-radius: 10%;
+    }
+  }
+  .anime-header_body{
+    h2{ margin-top: 0; }
+  }
+}
+

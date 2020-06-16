@@ -1,0 +1,41 @@
+{% load compress %}
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>AnimatFlix</title>
+        {% load static %}
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {% compress css %}
+            <link rel="stylesheet" type="text/x-scss" href="{% static "/css/app.scss" %}" />
+        {% endcompress %}
+    </head>
+    <body>
+       {% block _nav %}{% endblock _nav %}
+        {% block without_container %}{% endblock without_container %}
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="{% static "/js/bin/materialize.js" %}"></script>
+        <script>
+             $(document).ready(function(){$('.sidenav').sidenav();});
+             $(function(){
+              $('.dropdown-trigger').dropdown({
+                inDuration: 1000,
+                outDuration: 2000,
+                constrainWidth: false,
+                hover: false,
+                coverTrigger: false,
+                belowOrigin: true,
+                alignment: 'left',
+                stopPropagation: true
+              });
+            });
+        </script>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block _nav %}{% include 'includes/../includes/_nav.html' %}{% endblock %}
+
+{% block without_container %}
+<header class="header">
+    <div class="container">
+        <div class="anime-header">
+            <div class="anime-header_image">
+                <img src="/static{{ anime.poster.url }}" alt="">
+            </div>
+            <div class="anime-header_body">
+                <h2>{{ anime.title }}</h2>
+                <div class="desc">
+                    {{ anime.description }}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+{% block content %}
+    <div id="main" class="row">
+    {% for season in seasons %}
+        <div class="col pos-re">
+          <div class="card card-movie">
+            <div class="card-image">
+              <img src="/static{{ season.thumb.url }}">
+        {#          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>#}
+            </div>
+            <div class="card-content">
+                <a class="card-title js-burger" href="{% url 'season_detail' anime.slug season.id %}">{{ season.name }}</a>
+                <span class="card-season">
+                    {{ season.episode_set.all|length }}
+                    {% if anime.season_set.all|length <= 1 %} episode{% else %} episodes{% endif %}
+                </span>
+            </div>
+              <div class="card-footer date">
+                  <span>{{ season.released_date|date:'d/m/Y' }}</span>
+              </div>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

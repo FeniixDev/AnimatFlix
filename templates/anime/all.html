@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block _nav %}{% include 'includes/../includes/_nav.html' %}{% endblock %}
+{% block content %}
+<div id="main" class="row py-2">
+    {% for anime in anime_list %}
+    <div class="col-md-4 py-1">
+        <div class="card shadow h-100" style="width: 18rem;">
+            <img src="/static{{ anime.poster.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ anime.title }}</h5>
+                <p class="card-text">
+                    {{ anime.description }} /
+                    {{ anime.released_date|date:'d-m-Y' }}
+                </p>
+                <a href="{% url 'anime-detail' anime.slug %}" class="btn btn-primary">View</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <h2>No animes</h2>
+    {% endfor %}
+</div>
+
+{% endblock %}
